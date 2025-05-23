@@ -1,0 +1,16 @@
+{
+  "name": "module-federation-poc",
+  "version": "1.0.0",
+  "description": "Module Federation example with React",
+  "scripts": {
+    "install-all": "npm run install-host && npm run install-remote",
+    "install-host": "cd host && npm install",
+    "install-remote": "cd remote && npm install",
+    "start-host": "cd host && npm start",
+    "start-remote": "cd remote && npm start",
+    "start": "concurrently \"npm run start-remote\" \"npm run start-host\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
