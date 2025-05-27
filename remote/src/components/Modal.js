@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose, title }) => {
+const Modal = ({ isOpen, onClose, title, variant = "no-backdrop" }) => {
   if (!isOpen) return null;
 
   // Add event listener for escape key press
@@ -35,11 +35,33 @@ const Modal = ({ isOpen, onClose, title }) => {
     };
   }, [isOpen]);
 
+  // Create ref for the modal content to detect clicks outside (for no-backdrop variant)
+  const modalRef = useRef(null);
+
+  // Handle clicks outside modal for no-backdrop variant
+  useEffect(() => {
+    if (variant === "no-backdrop" && isOpen) {
+      const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          onClose();
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [isOpen, onClose, variant]);
+
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <>
+      {variant === "backdrop" && (
+        <div className="modal-overlay" onClick={onClose}></div>
+      )}
+      <div className={`modal-popup ${isOpen ? "open" : ""}`} ref={modalRef}>
         <div className="modal-header">
-          <h2>Create Shipment Issue | ORD# 1510221766 | DN #1332175230</h2>
+          <h2>Create Shipment Issue | ORD# 1510221766 | DN #1332175320</h2>
           <button className="modal-close-button" onClick={onClose}>
             ×
           </button>
@@ -49,7 +71,12 @@ const Modal = ({ isOpen, onClose, title }) => {
             <h3>What is the issue or request?</h3>
             <div className="form-options">
               <label className="option">
-                <input type="radio" name="issue-type" value="not-received" />
+                <input
+                  type="radio"
+                  name="issue-type"
+                  value="not-received"
+                  checked
+                />
                 <span>Customer did not receive their item</span>
               </label>
               <label className="option">
@@ -86,7 +113,7 @@ const Modal = ({ isOpen, onClose, title }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
