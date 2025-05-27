@@ -1,8 +1,14 @@
 .app-container {
   font-family: Arial, sans-serif;
+  width: 100%;
+  margin: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply max-width to all pages except OrderDetail */
+.app-container > *:not(.order-detail-container) {
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .content {

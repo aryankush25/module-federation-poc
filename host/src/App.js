@@ -1,40 +1,51 @@
-import React, { Suspense, useState } from 'react';
-import './App.css';
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
 
-// Dynamically import the remote components using React.lazy
-const RemoteButton = React.lazy(() => import('remote/Button'));
-const RemoteHeader = React.lazy(() => import('remote/Header'));
+// Import page components
+import Home from "./components/Home";
+import About from "./components/About";
+import Counter from "./components/Counter";
+import OrderDetail from "./components/OrderDetail";
+
+// Dynamically import the remote header component using React.lazy
+const RemoteHeader = React.lazy(() => import("remote/Header"));
+const RemoteDemo = React.lazy(() => import("remote/Demo"));
+
+const RemoteDemoComponent = () => {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading Remote Demo...</div>}>
+        <RemoteDemo />
+      </Suspense>
+    </div>
+  );
+};
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
-  const handleClick = () => {
-    setCount(count + 1);
-  };
-
   return (
-    <div className="app-container">
-      <Suspense fallback={<div>Loading Header...</div>}>
-        <RemoteHeader title="Host Application" />
-      </Suspense>
-      
-      <div className="content">
-        <h2>This is the Host App</h2>
-        <p>This application consumes components from the Remote App using Module Federation.</p>
-        
-        <div className="counter-section">
-          <h3>Counter: {count}</h3>
-          <Suspense fallback={<div>Loading Button...</div>}>
-            <RemoteButton text="Increment Counter" onClick={handleClick} />
-          </Suspense>
-        </div>
-        
-        <div className="info-section">
-          <h3>Module Federation Example</h3>
-          <p>The button and header above are being loaded from a separate application (Remote) at runtime!</p>
-        </div>
+    <Router>
+      <div className="app-container">
+        {/* Only show header on routes other than order-detail */}
+        <Route
+          exact
+          path={["/", "/about", "/counter", "/remote"]}
+          render={() => (
+            <Suspense fallback={<div>Loading Header...</div>}>
+              <RemoteHeader title="Host Application" />
+            </Suspense>
+          )}
+        />
+
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/counter" component={Counter} />
+          <Route path="/remote" component={RemoteDemoComponent} />
+          <Route path="/order-detail" component={OrderDetail} />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 };
 

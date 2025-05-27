@@ -1,17 +1,24 @@
-import React from 'react';
-import Header from './components/Header';
-import Button from './components/Button';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
+
+// Import page components
+import Home from "./components/Home";
+import Features from "./components/Features";
+import Demo from "./components/Demo";
 
 const App = () => {
   return (
-    <div>
-      <Header title="Remote Application" />
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <h2>This is the Remote App</h2>
-        <p>This application exposes components that can be consumed by the host application.</p>
-        <Button text="Remote Button" onClick={() => alert('Button clicked in Remote App!')} />
+    <Router>
+      <div>
+        <Header title="Remote Application" />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/features" component={Features} />
+          <Route path="/demo" component={Demo} />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 };
 

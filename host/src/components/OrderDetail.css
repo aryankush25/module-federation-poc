@@ -1,0 +1,486 @@
+/* OrderDetail.css */
+
+.order-detail-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  width: 100%;
+  margin: 0;
+  background-color: #f5f5f7;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+/* Main content layout */
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.left-section {
+  flex: 1;
+  padding: 0 20px;
+  max-width: 80%;
+}
+
+.right-section {
+  width: 20%;
+  min-width: 300px;
+  background-color: white;
+  border-left: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Toolbar */
+.toolbar {
+  background-color: #000;
+  color: white;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.toolbar-logo {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Order Header */
+.order-header {
+  background-color: white;
+  /* padding: 8px 15px; */
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.order-header h2 {
+  margin: 0;
+  font-size: 14px;
+  flex-basis: 100%;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.search-results {
+  font-size: 12px;
+  color: #0066cc;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.customer-info {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  color: #555;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Sections */
+.order-section,
+.fulfillment-section,
+.items-section {
+  margin: 8px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.expand-icon {
+  margin-right: 8px;
+  color: #555;
+  font-size: 10px;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 13px;
+  flex-grow: 1;
+  font-weight: normal;
+}
+
+.section-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Order Details */
+.order-details {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+/* Tabs */
+.order-tabs {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.tab {
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.tab.active {
+  border-bottom-color: #0066cc;
+  font-weight: bold;
+  color: #0066cc;
+}
+
+/* Fulfillment Details */
+.fulfillment-details {
+  padding: 10px;
+}
+
+.fulfillment-columns {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+}
+
+.column h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 3px;
+}
+
+.detail-item {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+/* Items Section */
+.items-content {
+  padding: 10px;
+}
+
+.invoice-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.fulfillment-status {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.status-title {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.tracking-info {
+  display: flex;
+  gap: 10px;
+  padding: 6px 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  align-items: center;
+}
+
+/* Item Table */
+.item-table {
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th {
+  text-align: left;
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+td {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.status-delivered {
+  color: #4caf50;
+  display: flex;
+  align-items: center;
+}
+
+/* Buttons */
+button {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.primary-button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.secondary-button {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #0066cc;
+  padding: 0;
+  text-decoration: underline;
+  font-size: 11px;
+}
+
+.link-button.small {
+  font-size: 11px;
+}
+
+.notes-button {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.more-button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.info-button {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+/* Notes Panel */
+.notes-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
+.tab-button.active {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.collapse-button {
+  color: #0066cc;
+  background: none;
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Notes Content */
+.notes-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notes-textarea {
+  flex-grow: 1;
+  min-height: 120px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: inherit;
+  resize: vertical;
+  font-size: 11px;
+}
+
+.save-note-button {
+  align-self: flex-end;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+/* Notes History */
+.notes-history {
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+.issue-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.issue-header {
+  background-color: #f8f8f8;
+  padding: 6px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.issue-header h4 {
+  margin: 0;
+  font-size: 11px;
+  color: #333;
+}
+
+.issue-details {
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.issue-details .detail-row {
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.view-more-button {
+  background: none;
+  border: none;
+  color: #0066cc;
+  padding: 3px 0;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Issue Form */
+.issue-form {
+  padding: 15px;
+}
+
+.issue-form h3 {
+  margin-top: 0;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.form-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.option input {
+  margin-top: 2px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+/* Loading indicator */
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  z-index: 1000;
+}
