@@ -23,13 +23,25 @@ const Modal = ({ isOpen, onClose, title }) => {
     };
   }, [isOpen, onClose]);
 
+  // Prevent body scrolling when popup is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Create Shipment Issue | ORD# 1510221766 | DN #1332175230</h2>
           <button className="modal-close-button" onClick={onClose}>
-            &times;
+            ×
           </button>
         </div>
         <div className="modal-body">
@@ -66,13 +78,10 @@ const Modal = ({ isOpen, onClose, title }) => {
               </label>
             </div>
             <div className="form-actions">
-              <button className="primary-button">Continue</button>
-              <button
-                className="link-button"
-                onClick={() => setTriggerModal(false)}
-              >
+              <button className="link-button" onClick={onClose}>
                 Cancel
               </button>
+              <button className="primary-button">Continue</button>
             </div>
           </div>
         </div>

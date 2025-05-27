@@ -1,5 +1,5 @@
-import React, { Suspense, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Suspense, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Dynamically import the remote button component using React.lazy
 const RemoteButton = React.lazy(() => import("remote/Button"));
