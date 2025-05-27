@@ -51,7 +51,15 @@ const OrderDetail = () => {
               <div className="expand-icon">▼</div>
               <h3>ORD# 1510221766</h3>
               <div className="section-actions">
-                <button className="info-button">Customer Info</button>
+                <button
+                  className="info-button"
+                  onClick={() => {
+                    alert("Customer Info");
+                    console.log("Customer Info");
+                  }}
+                >
+                  Customer Info
+                </button>
                 <button className="more-button">•••</button>
               </div>
             </div>

@@ -1,14 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Modal.css";
 
 const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
-  if (!isOpen) return null;
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [hasUnsavedProgress, setHasUnsavedProgress] = useState(true); // Set to true for demo, in real app would track form changes
+  
+  // Create ref for the modal content to detect clicks outside (for no-backdrop variant)
+  const modalRef = useRef(null);
+  
+  // Function to handle close attempts with confirmation if needed
+  const handleCloseAttempt = () => {
+    if (hasUnsavedProgress) {
+      setShowConfirmation(true);
+    } else {
+      onClose();
+    }
+  };
+  
+  // Function to confirm close and discard changes
+  const confirmClose = () => {
+    setShowConfirmation(false);
+    onClose();
+  };
+  
+  // Function to cancel close attempt
+  const cancelClose = () => {
+    setShowConfirmation(false);
+  };
 
   // Add event listener for escape key press
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === "Escape") {
-        onClose();
+        handleCloseAttempt();
       }
     };
 
@@ -35,15 +59,13 @@ const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
     };
   }, [isOpen]);
 
-  // Create ref for the modal content to detect clicks outside (for no-backdrop variant)
-  const modalRef = useRef(null);
-
   // Handle clicks outside modal for no-backdrop variant
   useEffect(() => {
     if (variant === "no-backdrop" && isOpen) {
       const handleClickOutside = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
-          onClose();
+          console.log("clicked outside");
+          handleCloseAttempt();
         }
       };
 
@@ -54,15 +76,18 @@ const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
     }
   }, [isOpen, onClose, variant]);
 
+  // Early return if modal is not open
+  if (!isOpen) return null;
+
   return (
     <>
       {variant === "backdrop" && (
-        <div className="modal-overlay" onClick={onClose}></div>
+        <div className="modal-overlay" onClick={handleCloseAttempt}></div>
       )}
       <div className={`modal-popup ${isOpen ? "open" : ""}`} ref={modalRef}>
         <div className="modal-header">
           <h2>Create Shipment Issue | ORD# 1510221766 | DN #1332175320</h2>
-          <button className="modal-close-button" onClick={onClose}>
+          <button className="modal-close-button" onClick={handleCloseAttempt}>
             ×
           </button>
         </div>
@@ -105,7 +130,7 @@ const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
               </label>
             </div>
             <div className="form-actions">
-              <button className="link-button" onClick={onClose}>
+              <button className="link-button" onClick={handleCloseAttempt}>
                 Cancel
               </button>
               <button className="primary-button">Continue</button>
@@ -113,6 +138,24 @@ const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
           </div>
         </div>
       </div>
+      
+      {/* Confirmation Dialog */}
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <h3>Unsaved Changes</h3>
+            <p>You have unsaved progress. Are you sure you want to close?</p>
+            <div className="confirmation-actions">
+              <button className="link-button" onClick={cancelClose}>
+                Cancel
+              </button>
+              <button className="primary-button warning" onClick={confirmClose}>
+                Discard Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

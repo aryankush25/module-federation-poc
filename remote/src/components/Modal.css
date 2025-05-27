@@ -133,3 +133,47 @@
     opacity: 1;
   }
 }
+
+/* Confirmation Dialog Styling */
+.confirmation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 350px;
+  max-width: 90%;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.confirmation-content h3 {
+  margin-top: 0;
+  color: #d9534f;
+  font-size: 1rem;
+}
+
+.confirmation-content p {
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.primary-button.warning {
+  background-color: #d9534f;
+}
