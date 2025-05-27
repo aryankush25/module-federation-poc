@@ -484,3 +484,8 @@ button {
   font-size: 18px;
   z-index: 1000;
 }
+
+.status-actions {
+  display: flex;
+  gap: 8px;
+}
