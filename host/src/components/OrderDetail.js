@@ -6,18 +6,15 @@ const RemoteModal = React.lazy(() => import("remote/Modal"));
 
 const OrderDetail = () => {
   const [triggerModal, setTriggerModal] = useState(false);
-  const [issueType, setIssueType] = useState("");
+  const [triggerModalBackdrop, setTriggerModalBackdrop] = useState(false);
   const [activeTab, setActiveTab] = useState("notes"); // 'notes' or 'history'
 
-  const openIssueModal = (type) => {
-    setIssueType(type);
-    setTriggerModal(true);
+  const toggleIssueModal = () => {
+    setTriggerModal((prev) => !prev);
   };
 
-  const handleModalOpenChange = (isOpen) => {
-    if (!isOpen) {
-      setTriggerModal(false);
-    }
+  const toggleIssueModalBackdrop = () => {
+    setTriggerModalBackdrop((prev) => !prev);
   };
 
   const handleTabChange = (tab) => {
@@ -193,10 +190,18 @@ const OrderDetail = () => {
                   <div className="status-actions">
                     <button
                       className="primary-button"
-                      onClick={() => openIssueModal("shipment")}
+                      onClick={() => toggleIssueModal()}
+                    >
+                      Create Shipment Issue (No Backdrop)
+                    </button>
+
+                    <button
+                      className="primary-button"
+                      onClick={() => toggleIssueModalBackdrop()}
                     >
                       Create Shipment Issue
                     </button>
+
                     <button className="secondary-button">Actions ▼</button>
                   </div>
                 </div>
@@ -393,7 +398,13 @@ const OrderDetail = () => {
       <Suspense fallback={<div className="loading-modal">Loading...</div>}>
         <RemoteModal
           isOpen={triggerModal}
-          onClose={() => setTriggerModal(false)}
+          onClose={() => toggleIssueModal()}
+          variant="no-backdrop"
+        />
+
+        <RemoteModal
+          isOpen={triggerModalBackdrop}
+          onClose={() => toggleIssueModalBackdrop()}
         />
       </Suspense>
     </div>

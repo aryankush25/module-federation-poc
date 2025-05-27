@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./Modal.css";
 
-const Modal = ({ isOpen, onClose, variant = "no-backdrop" }) => {
+const Modal = ({ isOpen, onClose, variant = "backdrop" }) => {
   if (!isOpen) return null;
 
   // Add event listener for escape key press
